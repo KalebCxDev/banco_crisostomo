@@ -1,15 +1,17 @@
 <?php
+require_once __DIR__ . '/../config/conexion.php'; 
+
 class UsuarioModel {
     private $db;
 
     public function __construct() {
-        $this->db = conexion::conectar();
+        $this->db = conexion::conectar(); 
     }
 
     public function verificarLogin($usuario, $password) {
-        $sql = "SELECT * FROM usuarios WHERE usuarios = '$usuario' AND password = '$password'";
+        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario' AND password = '$password'";
         $resultado = $this->db->query($sql);
-        return $resultado->fetch_assoc();
+        return $resultado ? $resultado->fetch_assoc() : null;
     }
 
     public function actualizarSaldo($id, $nuevoSaldo) {
@@ -18,11 +20,14 @@ class UsuarioModel {
     }
 
     public function listarUsuarios() {
-        $sql = "SELECT id, usuarios, saldos FROM usuarios";
+        $sql = "SELECT id, usuario, saldo FROM usuarios";
         $resultado = $this->db->query($sql);
         $usuarios = [];
-        while ($fila = $resultado->fetch_assoc()) {
-            $usuarios[] = $fila;
+        
+        if ($resultado) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $usuarios[] = $fila;
+            }
         }
         return $usuarios;
     }

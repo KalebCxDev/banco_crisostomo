@@ -1,5 +1,5 @@
-<?php include 'views/partials/header.php'; ?>
-<?php include 'views/partials/nav.php'; ?>
+<?php include 'view/partials/header.php'; ?>
+<?php include 'view/partials/nav.php'; ?>
 
 <div class="container mt-4">
     <h2>Listado de Usuarios</h2>
@@ -25,4 +25,4 @@
     </div>
 </div>
 
-<?php include 'views/partials/footer.php'; ?>
+<?php include 'view/partials/footer.php'; ?>

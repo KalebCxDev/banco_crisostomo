@@ -8,7 +8,7 @@ class BancoController {
 
     public function inicio() {
         $titulo = "Inicio";
-        include 'views/inicio.php';
+        include 'view/inicio.php';
     }
 
     public function login() {
@@ -18,7 +18,7 @@ class BancoController {
         $usuarioLogueado = null;
 
         if ($user != '' && $pass != '') {
-            $usuarioLogueado = $this->this->modelo->verificarLogin($user, $pass);
+            $usuarioLogueado = $this->modelo->verificarLogin($user, $pass);
             if ($usuarioLogueado) {
                 $mensaje = "LOGIN EXITOSO.";
             } else {
@@ -29,35 +29,36 @@ class BancoController {
         }
 
         $titulo = "Login";
-        include 'views/login.php';
+        include 'view/login.php';
     }
-}
-public function retiro() {
-    $idUsuario = 1;
-    $saldoActual = 1500;
-    $montoRetiro = isset($_GET['monto']) ? $_GET['monto'] : 0;
-    $mensaje = '';
-    $nuevoSaldo = $saldoActual;
 
-    if ($montoRetiro > 0) {
-        if ($montoRetiro <= $saldoActual) {
-            $nuevoSaldo = $saldoActual - $montoRetiro;
-            $this->modelo->actualizarSaldo($idUsuario, $nuevoSaldo);
-            $mensaje = "RETIRO APROBADO.";
+    public function retiro() {
+        $idUsuario = 1;
+        $saldoActual = 1500;
+        $montoRetiro = isset($_GET['monto']) ? $_GET['monto'] : 0;
+        $mensaje = '';
+        $nuevoSaldo = $saldoActual;
+
+        if ($montoRetiro > 0) {
+            if ($montoRetiro <= $saldoActual) {
+                $nuevoSaldo = $saldoActual - $montoRetiro;
+                $this->modelo->actualizarSaldo($idUsuario, $nuevoSaldo);
+                $mensaje = "RETIRO APROBADO.";
+            } else {
+                $mensaje = "ERROR: Fondos insuficientes.";
+            }
         } else {
-            $mensaje = "ERROR: Fondos insuficientes.";
+            $mensaje = "Por favor, indique el monto a retirar en la URL (monto=X).";
         }
-    } else {
-        $mensaje = "Por favor, indique el monto a retirar en la URL (monto=X).";
+
+        $titulo = "Retiro";
+        include 'view/retiro.php';
     }
 
-    $titulo = "Retiro";
-    include 'views/retiro.php';
-}
-
-public function listarUsuarios() {
-    $usuarios = $this->modelo->listarUsuarios();
-    $titulo = "Listado de Usuarios";
-    include 'views/usuarios.php';
+    public function listarUsuarios() {
+        $usuarios = $this->modelo->listarUsuarios();
+        $titulo = "Listado de Usuarios";
+        include 'view/usuarios.php';
+    }
 }
 ?>
