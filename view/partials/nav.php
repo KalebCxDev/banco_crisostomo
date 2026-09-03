@@ -1,16 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container">
-        <a class="navbar-brand" href="index.php">Banco ISTO</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="index.php">Inicio</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?accion=login">Login</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?accion=retiro">Retiro</a></li>
-                <li class="nav-item"><a class="nav-link" href="index.php?accion=listar">Usuarios</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
+<header>
+    <nav>
+        <a href="index.php" class="logo">Banco <span>ISTO</span></a>
+        <ul class="nav-links">
+            <li><a href="index.php">Inicio</a></li>
+            <li><a href="index.php?accion=login">Login</a></li>
+            <li><a href="index.php?accion=retiro">Retiro</a></li>
+            <li><a href="index.php?accion=listar">Usuarios</a></li>
+        </ul>
+    </nav>
+</header>
