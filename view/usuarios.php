@@ -1,28 +1,35 @@
-<?php include 'view/partials/header.php'; ?>
-<?php include 'view/partials/nav.php'; ?>
+<?php
+include 'view/partials/header.php';
+include 'view/partials/nav.php';
+?>
 
-<div class="container mt-4">
-    <h2>Listado de Usuarios</h2>
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead class="table-dark">
+<h2><?php echo $titulo; ?></h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Saldo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php if (!empty($usuarios)): ?>
+            <?php foreach ($usuarios as $fila): ?>
                 <tr>
-                    <th>ID</th>
-                    <th>Usuario</th>
-                    <th>Saldo</th>
+                    <td><?php echo $fila['id']; ?></td>
+                    <td><?php echo $fila['usuario']; ?></td>
+                    <td>$<?php echo number_format($fila['saldo'], 2); ?></td>
                 </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($usuarios as $usuario): ?>
-                    <tr>
-                        <td><?= $usuario['id'] ?></td>
-                        <td><?= htmlspecialchars($usuario['usuarios']) ?></td>
-                        <td>$<?= number_format($usuario['saldo'], 2) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-</div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <tr>
+                <td colspan="3">No hay usuarios registrados.</td>
+            </tr>
+        <?php endif; ?>
+    </tbody>
+</table>
 
-<?php include 'view/partials/footer.php'; ?>
+<?php
+include 'view/partials/footer.php';
+?>
